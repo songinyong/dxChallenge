@@ -21,8 +21,16 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class PostServiceImpl implements PostService {
 	
+	
+	
+	
+	private StoreRepository storeRepository;
+	
 	@Autowired
-	StoreRepository storeRepository;
+	public void setUserRepository(StoreRepository userRepository) {
+	    this.storeRepository = userRepository;
+	 }
+
 	
 	@Transactional
     //모든 상점 기본 정보 출략
