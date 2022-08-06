@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Configuration
-@EnableJpaRepositories(basePackages = {"com..domain.jpa"}) // JpaRepository 패키지 위치 등록
+@EnableJpaRepositories(basePackages = {"com.domain.jpa"}) // JpaRepository 패키지 위치 등록
 @EnableConfigurationProperties({JpaProperties.class, HibernateProperties.class})
 public class JpaConfig {
 

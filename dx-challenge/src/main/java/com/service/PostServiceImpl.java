@@ -16,8 +16,6 @@ import com.domain.jpa.StoreRepository;
 import lombok.RequiredArgsConstructor;
 
 
-
-
 @Service
 public class PostServiceImpl implements PostService {
 	
