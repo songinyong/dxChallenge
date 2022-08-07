@@ -106,8 +106,33 @@ public class PostServiceImpl implements PostService {
     	return store;
 
     }
+	
+	
+	//상점의 모든 상품 목록 출력	
 	@Transactional
-    //상점 아이디 기준 상점의 상품 목록 출력
+    public List<StockDto> findAllStock() {
+		
+		HashMap<Long, Food> food = new HashMap<Long, Food>();
+		List<Food> food_list = foodRepository.findAll();
+		
+
+		for(Food f : food_list) 
+			food.put(f.getStore_id(), f);
+		
+		List<Stock> stockList = stockRepository.findAll();
+		List<StockDto> printStockList = new ArrayList<StockDto>();
+		
+		for(Stock s : stockList) 
+			printStockList.add(new StockDto(food.get(s.getStore_id()), s));
+		
+        return printStockList;
+
+    }
+
+	
+	
+	//상점 아이디 기준 상점의 상품 목록 출력	
+	@Transactional
     public List<StockDto> findStockByRoomId(Long StoreId) {
 		
 		
@@ -129,6 +154,8 @@ public class PostServiceImpl implements PostService {
         return printStockList;
 
     }
+	
+	
 	@Transactional
 	// 키워드 기준 상점 목록 출력
 	public List<Store> findStoreByKeyword(String keyword) {
@@ -181,10 +208,8 @@ public class PostServiceImpl implements PostService {
 			map.put("msg", "존재하지 않는 상품입니다");
 			return map ;
 			
-			
 		}
 
-		
 	}
 	
 	

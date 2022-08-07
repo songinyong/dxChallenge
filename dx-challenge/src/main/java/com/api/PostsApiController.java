@@ -10,10 +10,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.dto.KeyWordDto;
 import com.api.dto.PurchaseDto;
 import com.api.dto.StockDto;
 import com.api.dto.StoreDto;
@@ -53,6 +55,11 @@ public class PostsApiController {
     	return postService.findByRoomId(id);
     } 
  
+    @GetMapping("/stock")
+    public List<StockDto> allStock() {
+    	return postService.findAllStock();
+    }  
+    
     @GetMapping("/stock/{id}")
     public List<StockDto> stockbyStoreId(@PathVariable Long id) {
     	return postService.findStockByRoomId(id);
@@ -63,9 +70,17 @@ public class PostsApiController {
     	return postService.findStoreByKeyword(keyword);
     }
     
+    @PostMapping("/search/store")
+    public List<Store> findStoreByKeywordBody(@RequestBody KeyWordDto keyword) {
+
+    	return postService.findStoreByKeyword(keyword.getKeyword());
+    }
+    
     @PutMapping("/purchase")
     public HashMap purchaseStock(@RequestBody PurchaseDto purchaseDto) {
     	return postService.purchaseItem(purchaseDto);
     }    
+    
+    
 
 }

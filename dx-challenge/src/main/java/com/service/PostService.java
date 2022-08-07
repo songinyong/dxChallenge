@@ -27,4 +27,6 @@ public interface PostService {
 	public List<Store> findStoreByKeyword(String keyword);
 	
 	public HashMap purchaseItem(PurchaseDto dto);
+	
+	public List<StockDto> findAllStock();
 }
