@@ -34,5 +34,7 @@ public class Store {
 	private String address;
 	@Column()
 	private String code_nm;
+	@Column()
+	private String photo_link;
     
 }
