@@ -15,26 +15,20 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name="store")
-public class Store {
+@Table(name="food")
+public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
 	@Column()
-	private String store_nm ;
+	private Long store_id ;
 	@Column()
-	private String x ;
-	@Column()
-	private String y;
-	@Column()
-	private String rating;
-	@Column()
-	private String address;
-	@Column()
-	private String code_nm;
+	private String food_nm ;
 	@Column()
 	private String photo_link;
-    
+	@Column()
+	private int price;
+
 }
