@@ -32,4 +32,6 @@ public interface PostService {
 	public List<StockDto> findAllStock();
 	
 	public List<StoreAndStockDto> findStoreAndStock();
+	
+	public List<StoreAndStockDto> findStoreAndStockByCategory(String store_code);
 }

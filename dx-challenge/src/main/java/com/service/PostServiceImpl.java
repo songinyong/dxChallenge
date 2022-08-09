@@ -171,20 +171,11 @@ public class PostServiceImpl implements PostService {
 		
 		for(Store s : storeList) {
 			
-
-					
-			
-			List<Stock> stockList = stockRepository.findStockByStoreId(s.getId());
-			
+			List<Stock> stockList = stockRepository.findStockByStoreId(s.getId());	
 			List<StockDto> printStockList = new ArrayList<StockDto>();
-			
-			
-			for(Stock stock : stockList) {
 				
-				    printStockList.add(new StockDto(food.get(stock.getFood_id()), stock));	
-			}
-				
-			
+			for(Stock stock : stockList) 
+		        printStockList.add(new StockDto(food.get(stock.getFood_id()), stock));	
 			
 			return_list.add(new StoreAndStockDto(s, printStockList ) );
 			
@@ -194,6 +185,45 @@ public class PostServiceImpl implements PostService {
 
 		
 	}
+	
+	//카테고리 코드 기준 상점 목록 및 상품 목록 조회
+	@Transactional
+    public List<StoreAndStockDto> findStoreAndStockByCategory(String store_code) {
+		
+		List<StoreAndStockDto> return_list = new ArrayList<StoreAndStockDto>();
+		Optional<CodeNm> code = codeRepository.findByCateory(store_code);
+		
+		if(code.isPresent()) {
+			List<Store> storeList = storeRepository.findByCateory(code.get().getCODE_NM());
+		
+			List<Food> food_list = foodRepository.findAll();
+			HashMap<Long, Food> food = new HashMap<Long, Food>();
+			for(Food f : food_list) 
+				food.put(f.getId(), f);
+			
+			for(Store s : storeList) {
+				
+				List<Stock> stockList = stockRepository.findStockByStoreId(s.getId());	
+				List<StockDto> printStockList = new ArrayList<StockDto>();
+					
+				for(Stock stock : stockList) 
+			        printStockList.add(new StockDto(food.get(stock.getFood_id()), stock));	
+				
+				return_list.add(new StoreAndStockDto(s, printStockList ) );
+				
+			}
+			
+			
+			
+			
+			return return_list;
+		}
+		else {
+			return new ArrayList<StoreAndStockDto>();
+		}
+		
+		
+    }
 	
 	
 	@Transactional

@@ -87,5 +87,10 @@ public class PostsApiController {
     	return postService.findStoreAndStock();
     }
     
+    @GetMapping("/store/stocks/{store_code}")
+    public List<StoreAndStockDto> findStoreAndStockByCategory(@PathVariable String store_code) {
+    	return postService.findStoreAndStockByCategory(store_code);
+    }    
+    
 
 }
