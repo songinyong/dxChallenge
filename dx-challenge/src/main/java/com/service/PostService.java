@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.api.dto.PurchaseDto;
 import com.api.dto.StockDto;
+import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
 import com.domain.jpa.Store;
 
@@ -29,4 +30,6 @@ public interface PostService {
 	public HashMap purchaseItem(PurchaseDto dto);
 	
 	public List<StockDto> findAllStock();
+	
+	public List<StoreAndStockDto> findStoreAndStock();
 }

@@ -48,11 +48,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -70,21 +66,10 @@
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
 		<dependency>
 		  <groupId>io.jsonwebtoken</groupId>
 		  <artifactId>jjwt</artifactId>
 		  <version>0.9.1</version>
-		</dependency>
-		
-		<dependency>
-		  <groupId>org.springframework.security</groupId>
-		  <artifactId>spring-security-jwt</artifactId>
-		  <version>1.0.9.RELEASE</version>
 		</dependency>
 		
 	</dependencies>

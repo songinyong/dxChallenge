@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.dto.PurchaseDto;
 import com.api.dto.StockDto;
+import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
 import com.domain.jpa.CodeNm;
 import com.domain.jpa.Food;
@@ -140,7 +141,7 @@ public class PostServiceImpl implements PostService {
 		
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		for(Food f : food_list) 
-			food.put(f.getStore_id(), f);
+			food.put(f.getId(), f);
 		
 		
 		List<Stock> stockList = stockRepository.findStockByStoreId(StoreId);
@@ -148,12 +149,51 @@ public class PostServiceImpl implements PostService {
 		List<StockDto> printStockList = new ArrayList<StockDto>();
 		
 		for(Stock s : stockList) 
-			printStockList.add(new StockDto(food.get(StoreId), s));
+			printStockList.add(new StockDto(food.get(s.getFood_id()), s));
 		
 		
         return printStockList;
 
     }
+	
+	//모든 상점 및 판대 상품 목록 조회
+	@Transactional
+    public List<StoreAndStockDto> findStoreAndStock() {
+
+		List<StoreAndStockDto> return_list = new ArrayList<StoreAndStockDto>();
+		
+		List<Store> storeList = storeRepository.findAll();
+		
+		List<Food> food_list = foodRepository.findAll();
+		HashMap<Long, Food> food = new HashMap<Long, Food>();
+		for(Food f : food_list) 
+			food.put(f.getId(), f);
+		
+		for(Store s : storeList) {
+			
+
+					
+			
+			List<Stock> stockList = stockRepository.findStockByStoreId(s.getId());
+			
+			List<StockDto> printStockList = new ArrayList<StockDto>();
+			
+			
+			for(Stock stock : stockList) {
+				
+				    printStockList.add(new StockDto(food.get(stock.getFood_id()), stock));	
+			}
+				
+			
+			
+			return_list.add(new StoreAndStockDto(s, printStockList ) );
+			
+		}
+		
+		return return_list;
+
+		
+	}
 	
 	
 	@Transactional
