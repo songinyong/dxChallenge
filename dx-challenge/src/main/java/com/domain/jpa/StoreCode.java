@@ -1,7 +1,5 @@
 package com.domain.jpa;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,26 +13,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name="store")
-public class Store {
-
+@Table(name="store_code")
+public class StoreCode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
 	@Column()
-	private String store_nm ;
-	@Column()
-	private String x ;
-	@Column()
-	private String y;
-	@Column()
-	private String rating;
-	@Column()
-	private String address;
+	private String code ;
 	@Column()
 	private String code_nm;
-	@Column()
-	private String photo_link;
-    
+
+
 }
