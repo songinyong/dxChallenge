@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.dto.PurchaseDto;
 import com.api.dto.StockDto;
+import com.api.dto.StockInStoreDto;
 import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
 import com.domain.jpa.CodeNm;
@@ -283,5 +284,37 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	
+	// 제품 정보안에 가게 정보 넣어서 보냄
+	@Transactional
+	public List<StockInStoreDto> findStockInStore() {
+		
+		List<StockInStoreDto> return_list = new ArrayList<StockInStoreDto>();
+		
+		List<Store> storeList = storeRepository.findAll();
+		List<Food> foodLlist = foodRepository.findAll();
+		List<Stock> stockList = stockRepository.findAll();
+		
+		HashMap<Long, Food> food = new HashMap<Long, Food>();
+		HashMap<Long, Store> store = new HashMap<Long, Store>();
+		
+		for(Food f : foodLlist) 
+			food.put(f.getId(), f);
+
+		for(Store s : storeList) 
+			store.put(s.getId(), s);
+		
+		for(Stock s : stockList) {
+			
+
+			return_list.add(new StockInStoreDto(food.get(s.getFood_id()) ,s, store.get(s.getFood_id())) );
+			
+		}
+		
+		return return_list;
+
+
+	}
+	
+
 	
 }

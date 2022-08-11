@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.dto.KeyWordDto;
 import com.api.dto.PurchaseDto;
 import com.api.dto.StockDto;
+import com.api.dto.StockInStoreDto;
 import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
 import com.domain.jpa.Store;
@@ -92,5 +93,9 @@ public class PostsApiController {
     	return postService.findStoreAndStockByCategory(store_code);
     }    
     
+    @GetMapping("/stockin")
+    public List<StockInStoreDto> findStockInStore() {
+    	return postService.findStockInStore();
+    }
 
 }
