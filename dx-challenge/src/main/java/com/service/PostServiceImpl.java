@@ -306,7 +306,7 @@ public class PostServiceImpl implements PostService {
 		for(Stock s : stockList) {
 			
 
-			return_list.add(new StockInStoreDto(food.get(s.getFood_id()) ,s, store.get(s.getFood_id())) );
+			return_list.add(new StockInStoreDto(food.get(s.getFood_id()) ,s, store.get(s.getStore_id())) );
 			
 		}
 		
