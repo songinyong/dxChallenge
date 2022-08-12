@@ -36,5 +36,6 @@ public class Store {
 	private String code_nm;
 	@Column()
 	private String photo_link;
-    
+	@Column()
+	private String opening_hour;
 }
