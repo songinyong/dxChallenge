@@ -3,6 +3,7 @@ package com.api.dto;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+import com.domain.jpa.Calorie;
 import com.domain.jpa.Food;
 import com.domain.jpa.Stock;
 import com.domain.jpa.Store;
@@ -32,7 +33,13 @@ public class StockInStoreDto {
 	private String code_nm;
 	private String opening_hour;
 	
-	public StockInStoreDto(Food food, Stock stock, Store store) {
+    private float calorie ;
+    private float pro ;
+    private float car ;
+    private float fat ;
+    private float nat ;
+	
+	public StockInStoreDto(Food food, Stock stock, Store store, Calorie calorie) {
 		
 		this.food_nm = food.getFood_nm();
 		this.photo_link = food.getPhoto_link();
@@ -50,6 +57,12 @@ public class StockInStoreDto {
 		this.address = store.getAddress();
 		this.code_nm = store.getCode_nm();
 		this.opening_hour = store.getOpening_hour();
+		
+		this.calorie = calorie.getCalorie();
+		this.pro = calorie.getPro();
+		this.car = calorie.getCar();
+		this.fat = calorie.getFat();
+		this.nat = calorie.getNat();
 		
 	}
 	

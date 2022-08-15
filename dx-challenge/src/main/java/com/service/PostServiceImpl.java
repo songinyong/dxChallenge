@@ -18,6 +18,8 @@ import com.api.dto.StockDto;
 import com.api.dto.StockInStoreDto;
 import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
+import com.domain.jpa.Calorie;
+import com.domain.jpa.CalorieRepository;
 import com.domain.jpa.CodeNm;
 import com.domain.jpa.Food;
 import com.domain.jpa.FoodRepository;
@@ -38,7 +40,7 @@ public class PostServiceImpl implements PostService {
 	private StoreCodeRepository codeRepository;
 	private StockRepository stockRepository;
 	private FoodRepository foodRepository;
-	
+	private CalorieRepository calorieRepository;
 	
 	@Autowired
 	public void setUserRepository(StoreRepository userRepository) {
@@ -58,6 +60,11 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	public void setFoodRepository(FoodRepository foodRepository) {
 	    this.foodRepository = foodRepository;
+	 }
+	
+	@Autowired
+	public void setCalorieRepository(CalorieRepository calorieRepository) {
+	    this.calorieRepository = calorieRepository;
 	 }
 	
 	@Transactional
@@ -293,9 +300,12 @@ public class PostServiceImpl implements PostService {
 		List<Store> storeList = storeRepository.findAll();
 		List<Food> foodLlist = foodRepository.findAll();
 		List<Stock> stockList = stockRepository.findAll();
+		List<Calorie> calorieList = calorieRepository.findAll();
+		
 		
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		HashMap<Long, Store> store = new HashMap<Long, Store>();
+		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
 		
 		for(Food f : foodLlist) 
 			food.put(f.getId(), f);
@@ -303,10 +313,14 @@ public class PostServiceImpl implements PostService {
 		for(Store s : storeList) 
 			store.put(s.getId(), s);
 		
+		for(Calorie c : calorieList )
+			calorie.put(c.getId(), c);
+		
 		for(Stock s : stockList) {
 			
 
-			return_list.add(new StockInStoreDto(food.get(s.getFood_id()) ,s, store.get(s.getStore_id())) );
+			Food temp = food.get(s.getFood_id());
+			return_list.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id())));
 			
 		}
 		
