@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "→"; ObjectID = "5be-H0-AAF"; */
+"5be-H0-AAF.text" = "→";
+
+/* Class = "UILabel"; text = "Storeaddress"; ObjectID = "5wC-IU-EuI"; */
+"5wC-IU-EuI.text" = "Storeaddress";
+
+/* Class = "UINavigationItem"; title = "오이소"; ObjectID = "8vn-j3-FNa"; */
+"8vn-j3-FNa.title" = "오이소";
+
+/* Class = "UIButton"; normalTitle = "베이커리"; ObjectID = "AEM-eg-7Qp"; */
+"AEM-eg-7Qp.normalTitle" = "베이커리";
+
+/* Class = "UILabel"; text = "FoodName"; ObjectID = "Brx-Aa-7DA"; */
+"Brx-Aa-7DA.text" = "FoodName";
+
+/* Class = "UISearchBar"; placeholder = "검색"; ObjectID = "J6G-Gr-314"; */
+"J6G-Gr-314.placeholder" = "검색";
+
+/* Class = "UIButton"; normalTitle = "떡"; ObjectID = "JVm-tw-hYY"; */
+"JVm-tw-hYY.normalTitle" = "떡";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LLF-MG-j4a"; */
+"LLF-MG-j4a.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "M8b-Oy-6Ov"; */
+"M8b-Oy-6Ov.text" = "Label";
+
+/* Class = "UILabel"; text = "가게 정보"; ObjectID = "TPt-h8-1Gt"; */
+"TPt-h8-1Gt.text" = "가게 정보";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UlU-bm-uSn"; */
+"UlU-bm-uSn.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Voe-qK-UVL"; */
+"Voe-qK-UVL.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "반찬"; ObjectID = "d7I-og-Ndf"; */
+"d7I-og-Ndf.normalTitle" = "반찬";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "d88-u0-wss"; */
+"d88-u0-wss.text" = "Label";
+
+/* Class = "UILabel"; text = "Storeinfo"; ObjectID = "e8g-2v-1jH"; */
+"e8g-2v-1jH.text" = "Storeinfo";
+
+/* Class = "UILabel"; text = "→"; ObjectID = "iKe-cM-Ahn"; */
+"iKe-cM-Ahn.text" = "→";
+
+/* Class = "UILabel"; text = "100000원"; ObjectID = "kzC-G4-Kr3"; */
+"kzC-G4-Kr3.text" = "100000원";
+
+/* Class = "UILabel"; text = "100000원"; ObjectID = "rnQ-Co-7gk"; */
+"rnQ-Co-7gk.text" = "100000원";
+
+/* Class = "UILabel"; text = "할인 마감 시간"; ObjectID = "tyl-dz-UIR"; */
+"tyl-dz-UIR.text" = "할인 마감 시간";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xEB-n6-znS"; */
+"xEB-n6-znS.text" = "Label";
+
+/* Class = "UILabel"; text = "00개 남음"; ObjectID = "z0D-kE-QEu"; */
+"z0D-kE-QEu.text" = "00개 남음";
+
+/* Class = "UIButton"; normalTitle = "과일/야채"; ObjectID = "zBF-Si-ASy"; */
+"zBF-Si-ASy.normalTitle" = "과일/야채";
