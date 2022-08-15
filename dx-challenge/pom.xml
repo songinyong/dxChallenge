@@ -49,6 +49,7 @@
 			<scope>test</scope>
 		</dependency>
 
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -65,6 +66,7 @@
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+
 		
 	</dependencies>
 
