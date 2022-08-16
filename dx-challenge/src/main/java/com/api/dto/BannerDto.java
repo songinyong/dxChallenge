@@ -39,11 +39,13 @@ public class BannerDto {
     private float fat ;
     private float nat ;
     
+    private int market_price;
+    
     
     //무슨 배너인지 구분
     private String banner_code;
 	
-	public BannerDto(Food food, Stock stock, Store store, Calorie calorie, String banner_code) {
+	public BannerDto(Food food, Stock stock, Store store, Calorie calorie, String banner_code, int market_price) {
 		
 		this.food_nm = food.getFood_nm();
 		this.photo_link = food.getPhoto_link();
@@ -69,6 +71,8 @@ public class BannerDto {
 		this.nat = calorie.getNat();
 		
 		this.banner_code = banner_code;
+		
+		this.market_price = market_price;
 	}
 	
 	private String timeSet(LocalDateTime expiration_date) {

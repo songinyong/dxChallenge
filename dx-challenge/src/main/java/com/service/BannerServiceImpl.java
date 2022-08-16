@@ -26,6 +26,8 @@ import com.domain.jpa.Calorie;
 import com.domain.jpa.CalorieRepository;
 import com.domain.jpa.Food;
 import com.domain.jpa.FoodRepository;
+import com.domain.jpa.MarketPrice;
+import com.domain.jpa.MarketPriceRepository;
 import com.domain.jpa.SeasonFood;
 import com.domain.jpa.SeasonFoodRepository;
 import com.domain.jpa.Stock;
@@ -56,6 +58,9 @@ public class BannerServiceImpl implements BannerService {
 	private FoodRepository foodRepository;
 	private CalorieRepository calorieRepository;
 	private StockRepository stockRepository;
+	private MarketPriceRepository marketRepository;
+	
+	
 	
 	@Autowired
 	public void setStoreRepository(StoreRepository storeRepository) {
@@ -93,7 +98,10 @@ public class BannerServiceImpl implements BannerService {
 	public void setSeasonFoodRepository(SeasonFoodRepository seasonRepository) {
 		this.seasonRepository = seasonRepository ;
 	}
-	
+	@Autowired
+	public void setMarketPriceRepository(MarketPriceRepository marketRepository) {
+		this.marketRepository = marketRepository ;
+	}	
 	
 	
 	// 계절정보 불러옴
@@ -196,6 +204,8 @@ public class BannerServiceImpl implements BannerService {
 		List<Stock> stockList = new ArrayList<Stock>();
 		
 		List<SeasonFood> seasonList = seasonRepository.findAll();
+		List<MarketPrice> marketPriceList = marketRepository.findAll();
+		
 		
 		
 		for(SeasonFood s : seasonList ) {
@@ -215,6 +225,7 @@ public class BannerServiceImpl implements BannerService {
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		HashMap<Long, Store> store = new HashMap<Long, Store>();
 		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
+		HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
 		
 		for(Food f : foodLlist) 
 			food.put(f.getId(), f);
@@ -224,11 +235,19 @@ public class BannerServiceImpl implements BannerService {
 		
 		for(Calorie c : calorieList )
 			calorie.put(c.getId(), c);
+
+		for(MarketPrice m : marketPriceList)
+			marketPrice.put(m.getFood_id(), m);
+		
 		
 		for(Stock s : stockList) {
 
+			int price = 0;
 			Food temp = food.get(s.getFood_id());
-			returnList.add(new BannerDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), "season"));
+			if(marketPrice.containsKey(temp.getId()))
+				price = marketPrice.get(temp.getId()).getMarket_price();
+			
+			returnList.add(new BannerDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), "season", price));
 			
 		}
 		
@@ -269,9 +288,12 @@ public class BannerServiceImpl implements BannerService {
 				
 				List<Store> storeList = storeRepository.findAll();
 				List<Calorie> calorieList = calorieRepository.findAll();
+				List<MarketPrice> marketPriceList = marketRepository.findAll();
 				
 				HashMap<Long, Store> store = new HashMap<Long, Store>();
 				HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
+				HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
+				
 				
 
 				for(Store s : storeList) 
@@ -279,6 +301,9 @@ public class BannerServiceImpl implements BannerService {
 				
 				for(Calorie c : calorieList )
 					calorie.put(c.getId(), c);
+				
+				for(MarketPrice m : marketPriceList)
+					marketPrice.put(m.getFood_id(), m);
 				
 				List<WeatherFood> wFoodList =  weatherFoodRepository.findByWeatherCode(bannerWeather);
 				
@@ -288,10 +313,16 @@ public class BannerServiceImpl implements BannerService {
 					Stock stock = stockRepository.findStockByFoodId(food.getId()).get(0);
 					Optional<Store> stores = storeRepository.findById(food.getStore_id());
 					
-					return_list.add(new BannerDto(food, stock, stores.get(), calorie.get(food.getCalorie_id()), bannerWeather));
+					
+					int price = 0;
+		
+					if(marketPrice.containsKey(food.getId()))
+						price = marketPrice.get(food.getId()).getMarket_price();
+					
+					
+					return_list.add(new BannerDto(food, stock, stores.get(), calorie.get(food.getCalorie_id()), bannerWeather, price));
 					
 
-					System.out.println(return_list);
 				}
 				
 				return return_list;

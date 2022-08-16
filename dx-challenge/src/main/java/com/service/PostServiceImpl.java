@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +23,8 @@ import com.domain.jpa.CalorieRepository;
 import com.domain.jpa.CodeNm;
 import com.domain.jpa.Food;
 import com.domain.jpa.FoodRepository;
+import com.domain.jpa.MarketPrice;
+import com.domain.jpa.MarketPriceRepository;
 import com.domain.jpa.SeasonFood;
 import com.domain.jpa.SeasonFoodRepository;
 import com.domain.jpa.Stock;
@@ -45,6 +46,7 @@ public class PostServiceImpl implements PostService {
 	private FoodRepository foodRepository;
 	private CalorieRepository calorieRepository;
 	private SeasonFoodRepository seasonRepository;
+	private MarketPriceRepository marketRepository;
 	
 	@Autowired
 	public void setUserRepository(StoreRepository userRepository) {
@@ -74,6 +76,10 @@ public class PostServiceImpl implements PostService {
 	public void setSeasonFoodRepository(SeasonFoodRepository seasonRepository) {
 		this.seasonRepository = seasonRepository ;
 	}
+	@Autowired
+	public void setMarketPriceRepository(MarketPriceRepository marketRepository) {
+		this.marketRepository = marketRepository ;
+	}	
 	
 	
 	@Transactional
@@ -310,12 +316,13 @@ public class PostServiceImpl implements PostService {
 		List<Food> foodLlist = foodRepository.findAll();
 		List<Stock> stockList = stockRepository.findAll();
 		List<Calorie> calorieList = calorieRepository.findAll();
+		List<MarketPrice> marketPriceList = marketRepository.findAll();
 		
 		
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		HashMap<Long, Store> store = new HashMap<Long, Store>();
 		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
-		
+		HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
 		for(Food f : foodLlist) 
 			food.put(f.getId(), f);
 
@@ -325,11 +332,16 @@ public class PostServiceImpl implements PostService {
 		for(Calorie c : calorieList )
 			calorie.put(c.getId(), c);
 		
+		for(MarketPrice m : marketPriceList)
+			marketPrice.put(m.getFood_id(), m);
+		
 		for(Stock s : stockList) {
 			
-
+			int price = 0;
 			Food temp = food.get(s.getFood_id());
-			return_list.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id())));
+			if(marketPrice.containsKey(temp.getId()))
+				price = marketPrice.get(temp.getId()).getMarket_price();
+			return_list.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), price  ));
 			
 		}
 		
@@ -362,11 +374,15 @@ public class PostServiceImpl implements PostService {
 		List<Store> storeList = storeRepository.findAll();
 		List<Food> foodLlist = foodRepository.findAll();
 		List<Calorie> calorieList = calorieRepository.findAll();
+		List<MarketPrice> marketPriceList = marketRepository.findAll();
 		
 		
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		HashMap<Long, Store> store = new HashMap<Long, Store>();
 		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
+		HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
+		
+		
 		
 		for(Food f : foodLlist) 
 			food.put(f.getId(), f);
@@ -377,11 +393,18 @@ public class PostServiceImpl implements PostService {
 		for(Calorie c : calorieList )
 			calorie.put(c.getId(), c);
 		
+		for(MarketPrice m : marketPriceList)
+			marketPrice.put(m.getFood_id(), m);
+		
 		for(Stock s : stockList) {
 			
-
+			
+			int price = 0;
 			Food temp = food.get(s.getFood_id());
-			returnList.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id())));
+			if(marketPrice.containsKey(temp.getId()))
+				price = marketPrice.get(temp.getId()).getMarket_price();
+				
+			returnList.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), price) );
 			
 		}
 		

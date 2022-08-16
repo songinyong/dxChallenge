@@ -38,8 +38,10 @@ public class StockInStoreDto {
     private float car ;
     private float fat ;
     private float nat ;
+    
+    private int market_price;
 	
-	public StockInStoreDto(Food food, Stock stock, Store store, Calorie calorie) {
+	public StockInStoreDto(Food food, Stock stock, Store store, Calorie calorie, int market_price) {
 		
 		this.food_nm = food.getFood_nm();
 		this.photo_link = food.getPhoto_link();
@@ -64,6 +66,7 @@ public class StockInStoreDto {
 		this.fat = calorie.getFat();
 		this.nat = calorie.getNat();
 		
+		this.market_price = market_price;
 	}
 	
 	private String timeSet(LocalDateTime expiration_date) {
