@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +32,7 @@ import com.service.BannerService;
 import com.service.PostService;
 
 import lombok.RequiredArgsConstructor;
+
 
 
 @RequiredArgsConstructor
@@ -111,7 +114,7 @@ public class PostsApiController {
     }
     
     @GetMapping("/test")
-    public void bringWeatherInfo() throws IOException {
+    public void bringWeatherInfo() throws IOException, ParseException {
     	bannerService.bringWeatherInfo();
     }
     
@@ -119,5 +122,18 @@ public class PostsApiController {
     public List<BannerDto> bringBannerInfo()  {
     	return bannerService.findSeaonAndWeather();
     }
+    
+  //스케줄러로 1초마다 gaming 및 블록 렌딩을 호출하여 게임상태 점검
+  	@Scheduled(cron = "0 0/20 * * * ?")
+  	private void gameCheck() throws IOException, ParseException {
+  		
+  		
+  		
+  		bannerService.bringWeatherInfo();
+  		
+  		
+
+  	}	
+    
 
 }
