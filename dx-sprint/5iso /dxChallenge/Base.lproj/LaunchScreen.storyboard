@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3HS-Aq-Qla">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="0cp-4G-MJK">
+            <objects>
+                <viewController id="3HS-Aq-Qla" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EsB-Kv-ZWW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen_Image" translatesAutoresizingMaskIntoConstraints="NO" id="5xM-i2-imO">
+                                <rect key="frame" x="0.0" y="478" width="375" height="300"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xci-t4-ohk">
+                                <rect key="frame" x="100" y="366" width="175" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="Ro5-ii-K2T"/>
+                                    <constraint firstAttribute="height" constant="80" id="oL2-Sr-FGy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vsZ-5o-AmL"/>
+                        <color key="backgroundColor" red="0.99934929610000001" green="0.74774134160000005" blue="0.31202071910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5xM-i2-imO" firstAttribute="top" secondItem="Xci-t4-ohk" secondAttribute="bottom" constant="32" id="PoU-3K-wzk"/>
+                            <constraint firstItem="5xM-i2-imO" firstAttribute="leading" secondItem="vsZ-5o-AmL" secondAttribute="leading" id="QqE-7T-r0G"/>
+                            <constraint firstItem="5xM-i2-imO" firstAttribute="bottom" secondItem="vsZ-5o-AmL" secondAttribute="bottom" id="Zp8-vu-Iyw"/>
+                            <constraint firstItem="Xci-t4-ohk" firstAttribute="centerX" secondItem="EsB-Kv-ZWW" secondAttribute="centerX" id="agN-WU-FyV"/>
+                            <constraint firstItem="Xci-t4-ohk" firstAttribute="centerY" secondItem="EsB-Kv-ZWW" secondAttribute="centerY" id="kvT-1C-g9D"/>
+                            <constraint firstItem="5xM-i2-imO" firstAttribute="centerX" secondItem="Xci-t4-ohk" secondAttribute="centerX" id="m4W-MS-3FR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8b-Ld-gwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-67" y="319"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Screen_Image" width="200" height="197.33332824707031"/>
+        <image name="Screen_Logo" width="490" height="216"/>
+    </resources>
+</document>
