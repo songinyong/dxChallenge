@@ -48,7 +48,7 @@ public class WeatherDto {
 				.pty(pty)
 				.reh(reh)
 				.rn1(rn1)
-				.t1h(pty)
+				.t1h(th1)
 				.uuu(uuu)
 				.vvv(vvv)
 				.vec(vec)
