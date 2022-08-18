@@ -117,7 +117,7 @@ public class BannerServiceImpl implements BannerService {
 		String baseTime = currentTime.format(DateTimeFormatter.ofPattern("HH"))+"00";
 
 		if(weatherRepository.findWeatherInfo(paramX, paramY, baseTime, now).isEmpty()) {
-			System.out.println("실행됨");
+			
 			/*
 			String uri = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
 			uri = uri + "?" + this.mapToUrlParam(params);*/
@@ -164,7 +164,7 @@ public class BannerServiceImpl implements BannerService {
 			// items로 부터 itemlist 를 받아오기 itemlist : 뒤에 [ 로 시작하므로 jsonarray이다.
 			JSONArray parse_item = (JSONArray) parse_items.get("item");
 			
-			System.out.println(parse_item);
+			//System.out.println(parse_item);
 
 			JSONObject obj; // object에 담을 객체
 			String category; //category 
@@ -274,8 +274,12 @@ public class BannerServiceImpl implements BannerService {
 		}
 		
 		//날씨 부분
-		Optional<Weather> weather = weatherRepository.findById((long) 0);
+		//Optional<Weather> weather = weatherRepository.findById((long) 0);
+		String paramX = "99";
+		String paramY = "75";
 		
+		Optional<Weather> weather =weatherRepository.findTopByXAndYOrderByDateDescTimeDesc(paramX, paramY);
+
 		String bannerWeather = "";
 		
 		if(weather.isPresent()) {
