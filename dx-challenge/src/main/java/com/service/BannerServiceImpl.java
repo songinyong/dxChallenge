@@ -104,7 +104,7 @@ public class BannerServiceImpl implements BannerService {
 		this.marketRepository = marketRepository ;
 	}	
 	
-	// 계절정보 불러옴
+	// 날씨 정보 기상청에서 받아와 DB에 저장
 	@Transactional
 	public void bringWeatherInfo() throws IOException, ParseException{
 
