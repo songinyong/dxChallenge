@@ -19,26 +19,23 @@ import com.api.dto.StockInStoreDto;
 import com.api.dto.StoreAndStockDto;
 import com.api.dto.StoreDto;
 import com.domain.jpa.Calorie;
-import com.domain.jpa.CalorieRepository;
-import com.domain.jpa.CodeNm;
 import com.domain.jpa.Food;
-import com.domain.jpa.FoodRepository;
 import com.domain.jpa.MarketPrice;
-import com.domain.jpa.MarketPriceRepository;
 import com.domain.jpa.SeasonFood;
-import com.domain.jpa.SeasonFoodRepository;
 import com.domain.jpa.Stock;
-import com.domain.jpa.StockRepository;
 import com.domain.jpa.Store;
-import com.domain.jpa.StoreCodeRepository;
-import com.domain.jpa.StoreRepository;
+import com.domain.jpa.Interface.CodeNm;
+import com.domain.jpa.repository.CalorieRepository;
+import com.domain.jpa.repository.FoodRepository;
+import com.domain.jpa.repository.MarketPriceRepository;
+import com.domain.jpa.repository.SeasonFoodRepository;
+import com.domain.jpa.repository.StockRepository;
+import com.domain.jpa.repository.StoreCodeRepository;
+import com.domain.jpa.repository.StoreRepository;
 
 
 @Service
 public class PostServiceImpl implements PostService {
-	
-	
-	
 	
 	private StoreRepository storeRepository;
 	private StoreCodeRepository codeRepository;
@@ -83,11 +80,10 @@ public class PostServiceImpl implements PostService {
 	
 	
 	@Transactional
-    //모든 상점 기본 정보 출략
+    //모든 상점 기본 정보 페이지 적용 출략
     public Page<StoreDto> findAllStore(Pageable pageRequest) {
 		
 		 Page<Store> storeList = storeRepository.findAll(pageRequest);
-		
 		 Page<StoreDto> dtoList = storeList.map(StoreDto::new);
 
     	
@@ -117,7 +113,6 @@ public class PostServiceImpl implements PostService {
 		else {
 			return new ArrayList<Store>();
 		}
-		
 		
     }
 	
@@ -159,16 +154,13 @@ public class PostServiceImpl implements PostService {
 	@Transactional
     public List<StockDto> findStockByRoomId(Long StoreId) {
 		
-		
 		List<Food> food_list = foodRepository.findFoodByStoreId(StoreId);
 		
 		HashMap<Long, Food> food = new HashMap<Long, Food>();
 		for(Food f : food_list) 
 			food.put(f.getId(), f);
 		
-		
 		List<Stock> stockList = stockRepository.findStockByStoreId(StoreId);
-		
 		List<StockDto> printStockList = new ArrayList<StockDto>();
 		
 		for(Stock s : stockList) 
@@ -236,9 +228,6 @@ public class PostServiceImpl implements PostService {
 				
 			}
 			
-			
-			
-			
 			return return_list;
 		}
 		else {
@@ -247,7 +236,6 @@ public class PostServiceImpl implements PostService {
 		
 		
     }
-	
 	
 	@Transactional
 	// 키워드 기준 상점 목록 출력
@@ -349,71 +337,5 @@ public class PostServiceImpl implements PostService {
 
 
 	}
-	
-	
-	// 배너 광고 정보 출력
-	@Transactional
-	public List<StockInStoreDto> findSeaonAndWeather() {
-		
-		List<StockInStoreDto> returnList = new ArrayList<StockInStoreDto>();
-		
-		List<Stock> stockList = new ArrayList<Stock>();
-		
-		List<SeasonFood> seasonList = seasonRepository.findAll();
-		
-		
-		for(SeasonFood s : seasonList ) {
-			
-			List<Stock> temp = stockRepository.findStockByFoodId(s.getFood_id());
-			
-			if(!temp.isEmpty())
-				stockList.addAll(temp);
-			
-		}
-		
-		List<Store> storeList = storeRepository.findAll();
-		List<Food> foodLlist = foodRepository.findAll();
-		List<Calorie> calorieList = calorieRepository.findAll();
-		List<MarketPrice> marketPriceList = marketRepository.findAll();
-		
-		
-		HashMap<Long, Food> food = new HashMap<Long, Food>();
-		HashMap<Long, Store> store = new HashMap<Long, Store>();
-		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
-		HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
-		
-		
-		
-		for(Food f : foodLlist) 
-			food.put(f.getId(), f);
-
-		for(Store s : storeList) 
-			store.put(s.getId(), s);
-		
-		for(Calorie c : calorieList )
-			calorie.put(c.getId(), c);
-		
-		for(MarketPrice m : marketPriceList)
-			marketPrice.put(m.getFood_id(), m);
-		
-		for(Stock s : stockList) {
-			
-			
-			int price = 0;
-			Food temp = food.get(s.getFood_id());
-			if(marketPrice.containsKey(temp.getId()))
-				price = marketPrice.get(temp.getId()).getMarket_price();
-				
-			returnList.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), price) );
-			
-		}
-		
-
-		
-		return returnList;
-		
-		
-	}
-
 	
 }

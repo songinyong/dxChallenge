@@ -45,7 +45,6 @@ public class PostsApiController {
 	private final BannerService bannerService;
 
 
-
     //특정 지갑 주소를 제외한 전체 AND sell_state 기준 페이지로 출력
     @GetMapping("/store2")
     public Page<StoreDto> pageStore(@PageableDefault(size=10) Pageable pageRequest) {
@@ -108,10 +107,6 @@ public class PostsApiController {
     	return postService.findStockInStore();
     }
     
-    @GetMapping("/bannertest")
-    public List<StockInStoreDto> findSeaonAndWeather() {
-    	return postService.findSeaonAndWeather();
-    }
     
     @GetMapping("/test")
     public void bringWeatherInfo() throws IOException, ParseException {
@@ -127,12 +122,7 @@ public class PostsApiController {
   	@Scheduled(cron = "0 0/20 * * * ?")
   	private void gameCheck() throws IOException, ParseException {
   		
-  		
-  		
   		bannerService.bringWeatherInfo();
-  		
-  		
-
   	}	
     
 

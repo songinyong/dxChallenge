@@ -27,21 +27,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.dto.BannerDto;
 import com.api.dto.WeatherDto;
 import com.domain.jpa.Calorie;
-import com.domain.jpa.CalorieRepository;
 import com.domain.jpa.Food;
-import com.domain.jpa.FoodRepository;
 import com.domain.jpa.MarketPrice;
-import com.domain.jpa.MarketPriceRepository;
 import com.domain.jpa.SeasonFood;
-import com.domain.jpa.SeasonFoodRepository;
 import com.domain.jpa.Stock;
-import com.domain.jpa.StockRepository;
 import com.domain.jpa.Store;
-import com.domain.jpa.StoreRepository;
 import com.domain.jpa.Weather;
 import com.domain.jpa.WeatherFood;
-import com.domain.jpa.WeatherFoodRepository;
-import com.domain.jpa.WeatherRepository;
+import com.domain.jpa.repository.CalorieRepository;
+import com.domain.jpa.repository.FoodRepository;
+import com.domain.jpa.repository.MarketPriceRepository;
+import com.domain.jpa.repository.SeasonFoodRepository;
+import com.domain.jpa.repository.StockRepository;
+import com.domain.jpa.repository.StoreRepository;
+import com.domain.jpa.repository.WeatherFoodRepository;
+import com.domain.jpa.repository.WeatherRepository;
 
 
 @Service

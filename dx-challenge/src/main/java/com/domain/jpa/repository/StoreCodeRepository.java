@@ -1,9 +1,12 @@
-package com.domain.jpa;
+package com.domain.jpa.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.domain.jpa.StoreCode;
+import com.domain.jpa.Interface.CodeNm;
 
 public interface StoreCodeRepository extends JpaRepository<StoreCode, Long>{
 

@@ -40,5 +40,4 @@ public interface PostService {
 	//제품 정보 안에 가제 정보 포함해서 제공 220811 요청으로 추가
 	public List<StockInStoreDto> findStockInStore();
 	
-	public List<StockInStoreDto> findSeaonAndWeather();
 }
