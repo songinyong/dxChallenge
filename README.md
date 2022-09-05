@@ -2,8 +2,14 @@
 내 주변 가게의 할인 정보를 실시간으로 볼 수 있는 오이소 앱 입니다
 
 22.8.5~22.8.13 총 2주간 진행된 Dx Challenge 해커톤에서 우수상을 받은 mvp 앱입니다.
+
 IOS 기반으로 대회기간동안 출시완료후 2번의 업데이트가 진행되었으며,
 이어지는 dxCamp 캠프를 통해 더욱 앱을 발전시키는중 입니다
+
+<div class="grid-image">
+<img src=https://user-images.githubusercontent.com/30370933/188375706-9724425b-9d28-4719-a5c0-e393b735a374.gif width="200" height="400">
+<img src=https://user-images.githubusercontent.com/30370933/188375621-186d30bd-5a8a-4f53-ac08-4ae7f645f3e0.gif width="200" height="400">
+</div>
 
 ### 앱소개 페이지:
 https://dull-plough-973.notion.site/31b5c848597b439d959e6c5c8495290d
