@@ -109,12 +109,6 @@ public class PostsApiController {
     }
     
     
-    //날씨 테스트용
-    @GetMapping("/test")
-    public void bringWeatherInfo() throws IOException, ParseException {
-    	bannerService.bringWeatherInfo();
-    }
-    
     @GetMapping("/banner")
     public List<BannerDto> bringBannerInfo()  {
     	return bannerService.findSeaonAndWeather();
