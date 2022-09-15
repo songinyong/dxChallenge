@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -333,7 +334,56 @@ public class PostServiceImpl implements PostService {
 			
 		}
 		
+
+		
 		return return_list;
+
+
+	}
+	
+	// test용 페이징 잠깐 띄어주기
+	@Transactional
+	public PageImpl findStockInStore2(Pageable pageable) {
+		
+		List<StockInStoreDto> return_list = new ArrayList<StockInStoreDto>();
+		
+		List<Store> storeList = storeRepository.findAll();
+		List<Food> foodLlist = foodRepository.findAll();
+		List<Stock> stockList = stockRepository.findAll();
+		List<Calorie> calorieList = calorieRepository.findAll();
+		List<MarketPrice> marketPriceList = marketRepository.findAll();
+		
+		
+		HashMap<Long, Food> food = new HashMap<Long, Food>();
+		HashMap<Long, Store> store = new HashMap<Long, Store>();
+		HashMap<Long, Calorie> calorie = new HashMap<Long, Calorie>();
+		HashMap<Long, MarketPrice> marketPrice = new HashMap<Long, MarketPrice >();
+		for(Food f : foodLlist) 
+			food.put(f.getId(), f);
+
+		for(Store s : storeList) 
+			store.put(s.getId(), s);
+		
+		for(Calorie c : calorieList )
+			calorie.put(c.getId(), c);
+		
+		for(MarketPrice m : marketPriceList)
+			marketPrice.put(m.getFood_id(), m);
+		
+		for(Stock s : stockList) {
+			
+			int price = 0;
+			Food temp = food.get(s.getFood_id());
+			if(marketPrice.containsKey(temp.getId()))
+				price = marketPrice.get(temp.getId()).getMarket_price();
+			return_list.add(new StockInStoreDto(temp ,s , store.get(s.getStore_id()), calorie.get(temp.getCalorie_id()), price  ));
+			
+		}
+		
+		int start = (int)pageable.getOffset();
+		int end = (start+ pageable.getPageSize()) > return_list.size() ? return_list.size() : (start + pageable.getPageSize());
+		
+		return new PageImpl(return_list.subList(start, end), pageable, return_list.size());
 
 
 	}

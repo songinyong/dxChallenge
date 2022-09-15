@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import com.api.dto.PurchaseDto;
@@ -39,5 +40,7 @@ public interface PostService {
 	
 	//제품 정보 안에 가제 정보 포함해서 제공 220811 요청으로 추가
 	public List<StockInStoreDto> findStockInStore();
+	
+	public PageImpl findStockInStore2(Pageable pageable);
 	
 }

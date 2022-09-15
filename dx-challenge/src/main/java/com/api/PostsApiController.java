@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -116,6 +117,11 @@ public class PostsApiController {
     @GetMapping("/banner")
     public List<BannerDto> bringBannerInfo()  {
     	return bannerService.findSeaonAndWeather();
+    }
+    
+    @GetMapping("/testPage")
+    public PageImpl findStockInStore2(@PageableDefault(size=10) Pageable pageable) {
+    	return postService.findStockInStore2(pageable);
     }
     
   //스케줄러로 1초마다 gaming 및 블록 렌딩을 호출하여 게임상태 점검
